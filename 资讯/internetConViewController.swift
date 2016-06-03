@@ -20,6 +20,8 @@ class internetConViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.tabBarController?.tabBar.alpha = 0
+        self.automaticallyAdjustsScrollViewInsets = true
         self.loadingAni.startAnimating()
         //self.view.frame = CGRectMake(0, 0 , self.view.frame.size.width, self.view.frame.size.height);
         
@@ -76,6 +78,8 @@ class internetConViewController: UIViewController{
         //print(dfmatter.stringFromDate(date))
         return dfmatter.stringFromDate(date)
     }
+    
+
 
     
     

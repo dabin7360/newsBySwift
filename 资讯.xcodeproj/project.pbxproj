@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4723E3891CFFD57800F19D9C /* msViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4723E3881CFFD57800F19D9C /* msViewController.swift */; };
+		4723E38B1D0005E900F19D9C /* cjViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4723E38A1D0005E900F19D9C /* cjViewController.swift */; };
 		47F6F3261CE96BBA003D3A11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F6F3251CE96BBA003D3A11 /* AppDelegate.swift */; };
 		47F6F3281CE96BBA003D3A11 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F6F3271CE96BBA003D3A11 /* ViewController.swift */; };
 		47F6F32B1CE96BBA003D3A11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47F6F3291CE96BBA003D3A11 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4723E3881CFFD57800F19D9C /* msViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = msViewController.swift; sourceTree = "<group>"; };
+		4723E38A1D0005E900F19D9C /* cjViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = cjViewController.swift; path = ../cjViewController.swift; sourceTree = "<group>"; };
 		47F6F3221CE96BBA003D3A11 /* 资讯.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "资讯.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47F6F3251CE96BBA003D3A11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47F6F3271CE96BBA003D3A11 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				47F6F3271CE96BBA003D3A11 /* ViewController.swift */,
 				47F6F3391CE9CC95003D3A11 /* internetConViewController.swift */,
 				47F6F3291CE96BBA003D3A11 /* Main.storyboard */,
+				4723E3881CFFD57800F19D9C /* msViewController.swift */,
+				4723E38A1D0005E900F19D9C /* cjViewController.swift */,
 				47F6F33D1CEC481A003D3A11 /* newsRecord.swift */,
 				47F6F33F1CEC4A1B003D3A11 /* newsOperations.swift */,
 				47F6F3411CEC4C08003D3A11 /* imageDownloader.swift */,
@@ -151,6 +157,8 @@
 				47F6F3281CE96BBA003D3A11 /* ViewController.swift in Sources */,
 				47F6F3261CE96BBA003D3A11 /* AppDelegate.swift in Sources */,
 				47F6F33A1CE9CC95003D3A11 /* internetConViewController.swift in Sources */,
+				4723E3891CFFD57800F19D9C /* msViewController.swift in Sources */,
+				4723E38B1D0005E900F19D9C /* cjViewController.swift in Sources */,
 				47F6F33E1CEC481A003D3A11 /* newsRecord.swift in Sources */,
 				47F6F3401CEC4A1B003D3A11 /* newsOperations.swift in Sources */,
 			);

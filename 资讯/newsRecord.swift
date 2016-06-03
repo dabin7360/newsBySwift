@@ -21,7 +21,7 @@ class newsRecord {
     let date:String
     var state = NewsRecordState.New
     //默认初始化图片
-    var image = UIImage(named: "logo")
+    var image = UIImage(named: "default-1")
     
     init(name:String,url:NSURL,id:String,date:String){
         self.name = name

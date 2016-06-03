@@ -32,7 +32,7 @@ class ImageDownloader : NSOperation{
             self.newssRecord.state = .Downloaded
         }else{
             self.newssRecord.state = .Failed
-            self.newssRecord.image = UIImage(named: "c")
+            self.newssRecord.image = UIImage(named: "default-1")
         }
         
     }

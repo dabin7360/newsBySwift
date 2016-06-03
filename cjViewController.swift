@@ -1,28 +1,28 @@
 //
-//  ViewController.swift
+//  cjViewController.swift
 //  资讯
 //
-//  Created by jdcsh-fe on 16/5/16.
+//  Created by jdcsh-fe on 16/6/2.
 //  Copyright © 2016年 dabin. All rights reserved.
 //
 
 import UIKit
 import Foundation
 
-class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
+class cjViewController: UIViewController, UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
     
-    var url = "http://www.tngou.net/api/top/list?id=6&rows=15"
+    var url = "http://www.tngou.net/api/top/list?id=3&rows=15"
     var newsArr = [newsRecord]()
     let newssOperations = newsOperations()
     var refreshControl = UIRefreshControl()
     var page = 1
     
-    @IBOutlet var internetTable: UITableView!
-    @IBOutlet weak var tableFooterView: UIView!
+    @IBOutlet weak var cjTable: UITableView!
     @IBOutlet weak var loadingListAni: UIActivityIndicatorView!
+    @IBOutlet weak var tableFooterView: UIView!
     @IBOutlet weak var loadingAni: UIActivityIndicatorView!
     
-    @IBAction func loadMoreBtn(sender: AnyObject) {
+    @IBAction func loadMoreBrn(sender: AnyObject) {
         self.loadingAni.startAnimating()
         self.page++
         let curUrl = self.url + "&page=" + String(self.page)
@@ -32,20 +32,16 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSThread.sleepForTimeInterval(1.0)//延长3秒
-        
-        //self.hidesBottomBarWhenPushed = true
         self.automaticallyAdjustsScrollViewInsets = true
-        //self.navigationItem.title = "社会百态"
         self.newsArr = []
         self.loadingListAni.startAnimating()
         requestUrl(url)
         // Do any additional setup after loading the view, typically from a nib.
         refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "大宾正在帮您加载，不客气")
-        internetTable.addSubview(refreshControl)
+        cjTable.addSubview(refreshControl)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,11 +58,12 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCellWithIdentifier("celldeid")
+        let cell = tableView.dequeueReusableCellWithIdentifier("celldeid3")
         
         let tin = newsArr[indexPath.row]
         let newsTile = tin.name
         var newsImg = tin.image
+        
         //let newsImgUrl = tin.url
         cell!.textLabel!.text = newsTile
         cell!.detailTextLabel?.text = tin.date
@@ -91,31 +88,31 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         
         cell?.imageView?.image = newsImg
         switch (tin.state){
-            case .Failed:
-                //indicator.stopAnimating()
-                cell?.textLabel?.text = "Failed to load"
-            case .New:
-                //indicator.startAnimating()
-                startDownloadForRecord(tin, indexPath: indexPath)
-            default:
-                print("")
+        case .Failed:
+            //indicator.stopAnimating()
+            cell?.textLabel?.text = "Failed to load"
+        case .New:
+            //indicator.startAnimating()
+            startDownloadForRecord(tin, indexPath: indexPath)
+        default:
+            print("")
         }
         
         return cell!
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toInternetCon"{
+        if segue.identifier == "toCjCon"{
             let toContView = segue.destinationViewController as! internetConViewController
             toContView.newsTitleData = (sender?.textLabel!!.text)!
             
-            let curIndex = self.internetTable.indexPathForCell(sender as! UITableViewCell)!
+            let curIndex = self.cjTable.indexPathForCell(sender as! UITableViewCell)!
             let curId = newsArr[curIndex.row].id
             
             //print(curIndex)
             toContView.newsId = curId
-                
-                //curContArr.description
+            
+            //curContArr.description
         }
     }
     
@@ -147,9 +144,9 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
                     let newsDate = self.timeStampToString(v.valueForKey("time")!.description)
                     let newssRecord = newsRecord(name: newsName, url: newsImgUrl,id: newsId,date: newsDate)
                     self.newsArr.append(newssRecord)
-                }    
-                
-                self.internetTable.reloadData()
+                }
+                //print(self.newsArr[0].name)
+                self.cjTable.reloadData()
                 self.tableFooterView.hidden = false;
                 self.loadingListAni.stopAnimating()
                 self.refreshControl.endRefreshing()
@@ -179,10 +176,10 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
                     
                 }
             }
-            self.internetTable.reloadData()
+            self.cjTable.reloadData()
             self.loadingAni.stopAnimating()
         })
-
+        
     }
     
     
@@ -202,7 +199,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
             }
             dispatch_async(dispatch_get_main_queue(), {
                 self.newssOperations.downloadsInProgress.removeValueForKey(indexPath)
-                self.internetTable.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                self.cjTable.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             })
         }
         //记录当前下载的任务
@@ -223,19 +220,5 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         return dfmatter.stringFromDate(date)
     }
     
-    /**
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        self.page++
-        let curUrl = self.url + "&page=" + String(self.page)
-        self.loadMoreText.text = "下拉加载更多"
-        if scrollView.contentOffset.y > (scrollView.contentSize.height - scrollView.frame.size.height + 30){
-            requestMoreData(curUrl)
-        }
-        
-    }
-    **/
-
-
-
 }
 
